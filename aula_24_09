@@ -1,0 +1,105 @@
+
+#======================================================
+#EXEMPLO 1
+
+t = -10:0.01 : 10; #começa em -10, vai até 10 incrementando 0,01
+T = 6
+omega = 2*pi/T;
+T1 = 2;
+x =  2*T1/T #valor inciaal, meu a0
+N= 10000
+
+#for generalizando a função e tendendo ela a N
+for k = 1:N
+  x= x+((sin(k*omega*T1))/pi/k)*exp(j*k*omega*t);
+end
+  plot(t,x)
+
+#========================================
+#EXEMPLO 1 AMPLITUDE CORRIGIDA
+t = -10:0.01 : 10; #começa em -10, vai até 10 incrementando 0,01
+T = 6
+omega = 2*pi/T;
+T1 = 2;
+x =  2*T1/T #valor inciaal, meu a0
+N= 10000
+
+#for generalizando a função e tendendo ela a N
+for k = 1:N
+  x= x+(((sin(k*omega*T1))/pi/k)*exp(j*k*omega*t))+(((sin((-k)*omega*T1))/pi/(-k))*exp(j*(-k)*omega*t));
+end
+  plot(t,x)
+  
+ # ASSIM (COLOCANDO -K) ele fica com amplitude de 0 a 1
+
+
+#=======================================================
+
+#EXEMPLO 2
+
+t = -10:0.01 : 10; #começa em -10, vai até 10 incrementando 0,01
+T = 4
+omega = 2*pi/T;
+T1 = 1;
+x =  2*T1/T #valor inciaal, meu a0
+N= 10000
+
+#for generalizando a função e tendendo ela a N
+for k = 1:N
+  x= x+(exp(-j*k*omega*2)*((sin(k*omega*T1))/pi/k))*exp(j*k*omega*t);
+end
+  plot(t,x)
+ 
+#ele é deslocado
+
+#===============================
+#EXEMPLO 2 CORRIGIDO ERRADO
+
+t = -10:0.01 : 10; #começa em -10, vai até 10 incrementando 0,01
+T = 4
+omega = 2*pi/T;
+T1 = 1;
+x =  2*T1/T #valor inciaal, meu a0
+N= 10000
+
+#for generalizando a função e tendendo ela a N
+for k = 1:N
+  x= x+((exp(-j*k*omega*2)*((sin(k*omega*T1))/pi/k))*exp(j*k*omega*t))+((exp(-j*(-k)*omega*2)*((sin((-k)*omega*T1))/pi/(-k)))*exp(j*(-k)*omega*t));
+end
+  plot(t,x)
+
+
+#==============================================
+#EXEMPLO 3
+
+t = -10:0.01 : 10; #começa em -10, vai até 10 incrementando 0,01
+T = 4
+omega = 2*pi/T;
+T1 = 1;
+x =  2*T1/T #valor inciaal, meu a0
+N= 10000
+
+#for generalizando a função e tendendo ela a N
+#grafico na versão -1 e 1
+for k = 1:N
+  x = x+((sin(k*omega*T1)/pi/k)-(exp(-j*k*omega*2)*((sin(k*omega*T1))/pi/k)))*exp(j*k*omega*t);
+end
+  plot(t,x)
+
+#=========================================
+#EXEMPLO 3 (ERRADO ALTERADO)
+t = -10:0.01 : 10; #começa em -10, vai até 10 incrementando 0,01
+T = 4
+omega = 2*pi/T;
+T1 = 1;
+x =  2*T1/T #valor inciaal, meu a0
+N= 10000
+
+#for generalizando a função e tendendo ela a N
+#grafico na versão -1 e 1
+for k = 1:N
+  x = x+(((sin(k*omega*T1)/pi/k)-(exp(-j*k*omega*2)*((sin(k*omega*T1))/pi/k)))*exp(j*k*omega*t))+(((sin((-k)*omega*T1)/pi/(-k))-(exp(-j*(-k)*omega*2)*((sin((-k)*omega*T1))/pi/(-k))))*exp(j*(-k)*omega*t));
+end
+  plot(t,x)
+
+
